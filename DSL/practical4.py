@@ -25,21 +25,26 @@ for i in range(0,no):
     roll_no=int(input())
     roll.append(roll_no)
 
-selection=int(input("Enter the roll no you want to search:"))
-print("select the type of search you want to use:")
-print("1.Linear Search")
-print("2.Sentinal Search")
-option=int(input())
-if option==1:
-    res=linearsearch(roll,selection)
-    if res==1:
-        print(selection," is present in the array")
-    else:
-        print(selection," is not present in the array")
+roll_sort=roll.sort()
+if(roll_sort==roll):
+    print("Array is sorted...Please enter a random array")
+    exit()    
+else:
+    selection=int(input("Enter the roll no you want to search:"))
+    print("select the type of search you want to use:")
+    print("1.Linear Search")
+    print("2.Sentinal Search")
+    option=int(input())
+    if option==1:
+        res=linearsearch(roll,selection)
+        if res==1:
+            print(selection," is present in the array")
+        else:
+            print(selection," is not present in the array")
 
-elif option==2:
-    res=sentinelsearch(roll,selection,no)
-    if res==1:
-        print(selection," is present")
-    else:
-        print(selection," is not present in array")
+    elif option==2:
+        res=sentinelsearch(roll,selection,no)
+        if res==1:
+            print(selection," is present")
+        else:
+            print(selection," is not present in array")
