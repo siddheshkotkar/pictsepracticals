@@ -1,9 +1,8 @@
 #include<iostream>
-#include<string.h>
 using namespace std;
 struct node {
 	string name;
-	bool butterscotch,vanilla;
+	char butterscotch,vanilla;
 	struct node *next;
 };
 class linkedlistmanager
@@ -12,11 +11,9 @@ public:
 	struct node *head=NULL;
 	void addelements(string stud_name,bool vanilla,bool butterscotch)
 	{
-
-		struct node *element=head;
+		node *element=new node;
 		if(head==NULL)
 		{
-			head = new node;
 			head->name=stud_name;
 			head->butterscotch=butterscotch;
 			head->vanilla=vanilla;
@@ -28,7 +25,6 @@ public:
 		{
 			element=element->next;
 		}
-
 		struct node *temp=new node;
 		temp->name=stud_name;
 		temp->butterscotch=butterscotch;
@@ -51,11 +47,11 @@ public:
 		while(temp!=NULL)
 		{
 			cout<<"Name:"<<temp->name<<endl;
-			if(temp->vanilla)
+			if(temp->vanilla==1)
 			{
 				cout<<temp->name<<" likes vanilla icecream"<<endl;
 			}
-			if(temp->butterscotch)
+			else if(temp->butterscotch==1)
 			{
 				cout<<temp->name<<" likes butterscotch icecream"<<endl;
 			}
@@ -85,26 +81,14 @@ public:
 
 				if(temp->vanilla==1 || temp->butterscotch==1 || temp->vanilla==0 || temp->butterscotch==0)
 				{
-
-					if(temp->vanilla)
-					{
-						cout<<temp->name<<"likes vanilla"<<endl;
-					}
-					else if(temp->butterscotch)
-					{
-						cout<<temp->name<<" likes butterscotch"<<endl;
-					}
-					if(!temp->vanilla && !temp->butterscotch)
-					{
-						cout<<temp->name<<" doesnt like any of the icecream"<<endl;
-					}
+					cout<<temp->name<<" likes"<<temp->vanilla<<" "<<temp->butterscotch<<endl;
 				}
 			}
-			else if(filter=="neither")
+			else if(filter="neither")
 			{
 				if(temp->vanilla==0 && temp->butterscotch==0)
 				{
-					cout<<temp->name<<" doesnt like any of the icecream"<<endl;
+					cout<<temp->name<<" likes nothing"<<endl;
 				}
 			}
 			temp=temp->next;
@@ -120,22 +104,18 @@ int main()
 	int n;
 	int ch;
 	string name;
-	char butterscotch,vanilla;
-	bool tempvan=false,tempbutter=false;
+	string butterscotch,vanilla;
 	cout<<"Enter the number of students you want to enter:"<<endl;
 	cin>>n;
 	for(int i=0;i<n;i++)
 	{
-		tempvan=0, tempbutter = 0;
-		cout<<"\nEnter name of student"<<endl;
+		cout<<"Enter name of student"<<endl;
 		cin>>name;
-		cout<<"Does "<<name<<" likes vanilla(y/n):"<<endl;
+		cout<<"Does "<<name<<" likes vanilla:"<<endl;
 		cin>>vanilla;
-		tempvan = vanilla == 'y';
-		cout<<"Does "<<name<<" likes Butterscotch(y/n):"<<endl;
+		cout<<"Does "<<name<<" likes Butterscotch:"<<endl;
 		cin>>butterscotch;
-		tempbutter = butterscotch == 'y';
-		llm.addelements(name, tempvan,tempbutter);
+		llm.addelements(name, vanilla=='y'?(true):(false), butterscotch=='y'?(true):(false));
 
 	}
 	do
