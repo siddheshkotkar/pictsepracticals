@@ -1,0 +1,79 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+class checkvalid
+{
+public:
+	bool isvalid(string s)
+	{
+		int n=s.size();
+		bool answer=true;
+		stack<char> st;
+		for(int i=0;i<n;i++)
+		{
+			if(s[i]=='(' || s[i]=='[' || s[i]=='{')
+			{
+				st.push(s[i]);
+			}
+			else if(s[i]==')')
+			{
+				if(!st.empty() && st.top()=='(')
+				{
+					st.pop();
+				}
+				else
+				{
+					answer=false;
+					break;
+				}
+			}
+			else if(s[i]==']')
+						{
+							if(!st.empty() && st.top()=='[')
+							{
+								st.pop();
+							}
+							else
+							{
+								answer=false;
+								break;
+							}
+						}
+			else if(s[i]=='}')
+						{
+							if(!st.empty() && st.top()=='{')
+							{
+								st.pop();
+							}
+							else
+							{
+								answer=false;
+								break;
+							}
+						}
+
+
+		}
+		if(!st.empty())
+		{
+			return false;
+		}
+		return answer;
+	}
+};
+int main()
+{
+	checkvalid c;
+	string expr;
+	cout<<"Enter expression:";
+	cin>>expr;
+	bool ans=c.isvalid(expr);
+	if(ans==true)
+	{
+		cout<<"Expression is valid";
+	}
+	else
+	{
+		cout<<"expression is invalid";
+	}
+}

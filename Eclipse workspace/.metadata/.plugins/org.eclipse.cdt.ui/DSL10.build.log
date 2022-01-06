@@ -1,0 +1,11 @@
+15:13:57 **** Incremental Build of configuration Debug for project DSL10 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\DSL10.o" "..\\src\\DSL10.cpp" 
+..\src\DSL10.cpp: In member function 'std::string intopos::infixtopostfix(std::string)':
+..\src\DSL10.cpp:31:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for(int i=0;i<s.length();i++)
+                ^
+g++ -o DSL10.exe "src\\DSL10.o" 
+
+15:13:57 Build Finished. 0 errors, 1 warnings. (took 861ms)
+

@@ -1,0 +1,8 @@
+16:07:55 **** Incremental Build of configuration Debug for project DSL9 ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\DSL9.o" "..\\src\\DSL9.cpp" 
+..\src\DSL9.cpp:7:11: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11
+  int top=-1;
+           ^
+g++ -o DSL9.exe "src\\DSL9.o" 
+Info: Nothing to build for DSL9

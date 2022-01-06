@@ -1,0 +1,108 @@
+#include<iostream>
+using namespace std;
+class publication
+{
+public:
+	string title;
+	float price;
+	void enter_data()
+	{
+		cout<<"Enter title of the book:"<<endl;
+		cin>>title;
+		cout<<"Enter price of the book:"<<endl;
+		cin>>price;
+	}
+};
+class book:public publication
+{
+public:
+	int page_count;
+	void enter_cnt()
+	{
+		cout<<"Enter page count for "<<title<<" "<<endl;
+		cin>>page_count;
+	}
+};
+class tape:public publication
+{
+public:
+	float minutes;
+	void playing_time()
+	{
+		cout<<"Enter the "<<title<<" playing time:"<<endl;
+		cin>>minutes;
+	}
+	void display()
+	{
+		cout<<"Title:"<<title<<endl;
+		cout<<"Price:"<<price<<endl;
+		cout<<"Playing minutes:"<<minutes<<endl;
+
+	}
+};
+
+int main()
+{
+	tape t;
+	book b;
+	string c;
+	int n,op;
+	bool isexit=false;
+	cout<<"MENU";
+	cout<<"1.Enter records"<<endl;
+	cout<<"2.Display records"<<endl;
+	cout<<"3.Exit"<<endl;
+	cout<<"Enter your choice:"<<endl;
+	cin>>op;
+	tape t1[n];
+	book b1[n];
+	while(isexit!=true)
+	{
+		switch(op)
+		{
+		case 1:
+			cout<<"Enter the number of records you want to enter:";
+			cin>>n;
+			for(int i=0;i<n;i++)
+			{
+				t1[i].enter_data();
+				b1[i].enter_cnt();
+				t1[i].playing_time();
+				try
+					{
+
+						if(b1[i].page_count<=0)
+						{
+
+							throw c;
+						}
+
+					}
+					catch(string c)
+					{
+						cout<<"Enter valid page count!!";
+						t1[i].minutes=0;
+						t1[i].price=0;
+						t1[i].title="";
+						b1[i].page_count=0;
+
+					}
+			}
+			break;
+		case 2:
+			for(int i=0;i<n;i++)
+			{
+				t1[i].display();
+				cout<<"Page count:"<<b1[i].page_count;
+			}
+			break;
+
+		case 3:
+			isexit=true;
+		}
+	}
+
+
+
+
+}

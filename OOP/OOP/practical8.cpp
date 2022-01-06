@@ -52,3 +52,8 @@ int main()
 	}
 	sort(arr1,n);
 }
+
+
+int n;
+	cout<<"Enter the number of elements you want to enter:"<<endl;
+	cin>>n;

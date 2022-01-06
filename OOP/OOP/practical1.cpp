@@ -19,7 +19,7 @@ class complex
 		}
 		friend ostream &operator<<(ostream &output,complex &t)
 		{
-			cout<<t.x<<" + "<<t.y<<"i";
+			output<<t.x<<" + "<<t.y<<"i";
 		}
 		
 		complex operator+(complex a)

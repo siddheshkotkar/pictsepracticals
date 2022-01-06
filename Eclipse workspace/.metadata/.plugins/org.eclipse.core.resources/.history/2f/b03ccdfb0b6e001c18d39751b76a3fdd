@@ -1,0 +1,27 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+class checkvalid
+{
+public:
+	bool isvalid(string s)
+	{
+		int n=s.size();
+		stack<char> st;
+		for(int i=0;i<n;i++)
+		{
+			if(s[i]=="(" || s[i]=="[" || s[i]=="{")
+			{
+				st.push(s[i]);
+			}
+		}
+	}
+};
+int main()
+{
+	checkvalid c;
+	string expr;
+	cout<<"Enter expression:";
+	cin>>expr;
+	c.isvalid(expr);
+}

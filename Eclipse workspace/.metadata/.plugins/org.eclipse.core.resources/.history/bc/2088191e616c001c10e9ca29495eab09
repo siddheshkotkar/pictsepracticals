@@ -1,0 +1,30 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+class operation
+{
+public:
+	ifstream fin;
+	ofstream of;
+	void create_write()
+	{
+		of.open("sample.txt");
+
+	}
+
+
+};
+int main()
+{
+	int op;
+	cout<<"MENU"<<endl;
+	cout<<"1.Create a file and write into it"<<endl;
+	cout<<"2.Read the file"<<endl;
+	cout<<"Enter your choice:";
+	cin>>op;
+	switch(op)
+	{
+	case 1:
+
+	}
+}

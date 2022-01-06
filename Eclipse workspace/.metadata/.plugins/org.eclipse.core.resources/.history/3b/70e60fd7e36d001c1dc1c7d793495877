@@ -1,0 +1,102 @@
+#include<iostream>
+using namespace std;
+struct queue
+{
+	int front,rear;
+	int data[10];
+};
+class queueop
+{
+public:
+	queue q;
+	queueop()
+	{
+		q.front=q.rear=-1;
+
+	}
+	int isempty();
+	int isfull();
+	void enqueue(int x);
+	int dequeue();
+	void display();
+
+};
+
+int queueop::isempty(){
+
+	return (q.front==q.rear)?1:0;
+}
+
+int queueop::isfull()
+{
+	int size=sizeof(q.data);
+	return (q.rear==size-1)?1:0;
+}
+
+void queueop:: enqueue(int x)
+{
+	q.data[++q.rear]=x;
+}
+
+int queueop::dequeue()
+{
+	int popped=q.data[q.front];
+	q.front++;
+	return popped;
+}
+void queueop::display(){
+	for(int i=q.front;i<q.rear;i++)
+	{
+		cout<<q.data[i]<<endl;
+	}
+
+}
+int main()
+{
+	queueop qp;
+	int ch;
+	do
+	{
+		int element;
+		cout<<"MENU"<<endl;
+		cout<<"1.Insert job"<<endl;
+		cout<<"2.Delete Job"<<endl;
+		cout<<"3.Display jobs"<<endl;
+		cout<<"4.Exit"<<endl;
+		cout<<"Enter your choice:"<<endl;
+		cin>>ch;
+		switch(ch)
+		{
+		case 1:
+			if(qp.isfull()==1)
+			{
+				cout<<"Queue is full!!";
+			}
+			else
+			{
+				cout<<"Enter job to enter:"<<endl;
+				cin>>element;
+				qp.enqueue(element);
+			}
+			break;
+		case 2:
+			if(qp.isempty()==1)
+			{
+				cout<<"Queue is empty!!";
+			}
+			else
+			{
+				cout<<"deleted job is:"<<qp.dequeue()<<endl;
+			}
+			cout<<"Remaining jobs are:";
+			qp.display();
+			break;
+		case 3:
+			qp.display();
+			break;
+		case 4:
+			break;
+
+		}
+	}while(ch!=4);
+}

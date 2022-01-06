@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+template <class  T>
+T selection_sort()
+{
+	int n,min;
+	cout<<"Enter the number of elements you want to enter:"<<endl;
+	cin>>n;
+	T arr[n],temp;
+	cout<<"Please enter "<<n<<" elements:"<<endl;
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+		cout<<arr[i];
+	}
+	for(int i=0;i<n;i++)
+	 {
+		min=i;
+	     for(int j=i+1;j<n;j++)
+	          {
+	              if(arr[j]<arr[min])
+	                {
+	            	  	 min=j;
+	                }
+	            }
+	     temp=arr[i];
+	     arr[i]=arr[min];
+	     arr[min]=temp;
+	         }
+
+	cout<<"Sorted array is:"<<endl;
+	for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<endl;
+	}
+}
+
+int main()
+{
+	cout<<"Integer sorting...";
+	selection_sort<int> ();
+	cout<<"Float sorting...";
+	selection_sort<float> ();
+
+}

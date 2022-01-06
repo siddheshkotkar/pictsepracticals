@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+template <class T>
+class sortarray
+{
+public:
+	T arr[];
+
+	void inputelements()
+	{
+		for(int i=0;i<sizeof(arr);i++)
+		{
+			cin>>arr[i];
+		}
+	}
+	void displayelements()
+	{
+		cout<<"The elements are"<<endl;
+		for(int i=0;i<sizeof(arr);i++)
+		{
+			cout<<arr[i]<<endl;
+		}
+	}
+
+
+};
+int main()
+{
+	int n;
+	sortarray<int> s1;
+	sortarray<float> s2;
+	cout<<"Enter number of integer elements:"<<endl;
+	cin>>s1.n;
+	s1.inputelements(n);
+	s1.displayelements();
+
+}

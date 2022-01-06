@@ -1,0 +1,13 @@
+#include<iostream>
+#include<algorithm>
+#include<map>
+using namespace std;
+class mapp
+{
+
+};
+int main()
+{
+	map <string,int> m1;
+
+}

@@ -1,0 +1,17 @@
+#include<iostream>
+#include<vector>
+#include<algorithm> //for sort function
+using namespace std; // make all the things under this scope as namespace std so no need of std:: prefix
+class elements
+{
+public:
+	string name,telephone,db;
+	int _id;
+};
+class personalrecord
+{
+public:
+	vector <elements> pd;
+
+
+};
