@@ -1,8 +1,7 @@
-#include <iostream>
-#include<stdlib.h>
+#include<iostream>
 using namespace std;
 class node
-{ 
+{
 public:
 	node* next;
 	node* prev;
@@ -23,7 +22,7 @@ void display();
 void book();
 void cancel();
 void avail();
- 
+
 };
 void cinemax::create_list()
 {
@@ -52,14 +51,14 @@ p->prev=tail;
 tail=p;
 tail->next=head;
 head->prev=tail;
- 
+
 }
 
 
 }
 void cinemax::display()
 {
-{ 
+{
 int r=1;
 node* temp;
 temp=head;
@@ -73,7 +72,7 @@ if(temp->seat/10==0)
 cout<<"S0"<<temp->seat<<" :";
 else
 cout<<"S"<<temp->seat<<" :";
- 
+
 if(temp->status==0)
 cout<<"|___| ";
 else
@@ -113,7 +112,7 @@ while(temp->seat!=x)
 {
 temp=temp->next;
 }
- 
+
 if(temp->status==1)
 cout<<"Seat already booked!\n";
 else{
@@ -121,7 +120,7 @@ temp->status=1;
 temp->id=y;
 cout<<"Seat "<<x<<" booked!\n";
 }
- 
+
 }
 void cinemax::cancel()
 {
@@ -155,7 +154,7 @@ if(temp->id==y)
 temp->status=0;
 cout<<"Seat Cancelled!\n";
 }
- 
+
 else
 cout<<"Wrong User ID !!! Seat cannot be cancelled!!!\n";
 }
@@ -181,27 +180,27 @@ if(temp->status==0)
 cout<<"|___| ";
 else if(temp->status==1)
 cout<<" ";
- 
+
 count++;
 if(count%7==0)
- 
+
 {
- 
+
 cout<<endl;
- 
+
 }
- 
+
 }
 temp=temp->next;
 }
 if(temp->status==0)
 {
 cout<<"S"<<temp->seat<<" :";
- 
+
 if(temp->status==0)
 cout<<"|___| ";
 }
- 
+
 }
 int main()
 { cinemax obj;
