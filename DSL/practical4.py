@@ -6,6 +6,7 @@ def linearsearch(roll,selection):
     return -1
 
 def sentinelsearch(roll,selection,no):
+    roll.append(selection)
     for i in roll:
         index=roll.index(i)
         last=no-1

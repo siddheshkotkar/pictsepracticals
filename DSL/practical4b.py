@@ -14,37 +14,40 @@ def binarysearch(roll,selection):
     return found
 
 def fibbonaccisearch(array,selection):
-    n=1
+    
     a=0
     b=1
     fibboseries=[]
     fibboseries.append(a)
-    fibboseries.append(a)
+    fibboseries.append(b)
     c=0
-    while(c<=len(array)):
+    while(c<len(array)):
+        
         c=a+b
         fibboseries.append(c)
         a=b
         b=c
-        n+=1
+        
     print(fibboseries)
+    print(a)
     offset=-1
     while(c>1):
-        i=min(offset+a,n-1)
+        i=min(offset+a,len(array)-1)
         if array[i]<selection:
             c=b
             b=a
             a=c-b
+            offset = i
         elif array[i]>selection:
             c=a
             b=b-a
             a=c-b
         else:   
-            return 1
-            f=1
-            break
+            return i
+            # f=1
+            # break
 
-no=int(input("Enter the number of studets you want to enter:"))
+no=int(input("Enter the number of students you want to enter:"))
 print("Enter roll numbers of students:")
 roll=[]
 
@@ -68,7 +71,7 @@ if option==1:
 
 elif option==2:
     res=fibbonaccisearch(roll,selection)
-    if res==1:
-        print(selection," is present")
+    if res>=0:
+        print(selection," is present at index ",res)
     else:
         print(selection," is not present in array")

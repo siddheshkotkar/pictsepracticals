@@ -19,7 +19,7 @@ def addmatrices(matrix1,matrix2):
     addmatrix=[]
     for i in range(len(matrix1)):
         rowsum=[]
-        for j in range(len(matrix2)):
+        for j in range(len(matrix2[0])):
             sum=matrix1[i][j]+matrix2[i][j]
             rowsum.append(sum)
         addmatrix.append(rowsum)

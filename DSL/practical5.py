@@ -14,7 +14,7 @@ def shellsort(percentage):
         for i in range(gap,size):
             anchor = percentage[i]
             j = i
-            while j>=gap and percentage[j-gap]>anchor:
+            while j>=gap and percentage[j-gap]>anchor:  #sorting done using insertion sort
                 percentage[j] = percentage[j-gap]
                 j -= gap
             percentage[j] = anchor
