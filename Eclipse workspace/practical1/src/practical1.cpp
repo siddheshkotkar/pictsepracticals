@@ -48,8 +48,28 @@ int main()
 	complex c1,c2,c3,c4;//creating complex type objects
 	cin>>c1;//calling >> operator
 	cin>>c2;//calling << operator
-	c3=c1+c2;//calling + operator
-	cout<<c3;//calling << operator
-	c4=c1*c2;//calling * operator
-	cout<<c4;//calling << operator
+	int op;
+	do
+	{
+
+	cout<<endl;
+	cout<<"1.Addition"<<endl;
+	cout<<"2.Multiplication"<<endl;
+	cout<<"3.Exit"<<endl;
+	cout<<"Enter your choice:"<<endl;;
+	cin>>op;
+	switch(op)
+	{
+	case 1:
+		c3=c1+c2;//calling + operator
+		cout<<c3;//calling << operator
+		break;
+	case 2:
+		c4=c1*c2;//calling * operator
+		cout<<c4;//calling << operator
+		break;
+	case 3:
+		break;
+	}
+	}while(op!=3);
 }
