@@ -1,6 +1,4 @@
 #include "iostream"
-//#include "stack"
-//#include<queue>
 #include<windows.h>
 #define MAX 50
 using namespace std;
