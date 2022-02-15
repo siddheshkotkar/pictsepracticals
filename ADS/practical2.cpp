@@ -73,7 +73,8 @@ void dictionary::updateKeyword(Node *root,string replacemeaning)
 	if(root->word==replacemeaning)
 	{
 		cout<<endl<<"Enter the meaning of word:";
-		cin>>replace;
+		cin.ignore(INT_MAX,'\n');
+		getline(cin,replace);
 		root->meaning=replace;
 	}
 	else if(replacemeaning>root->word)
@@ -141,7 +142,9 @@ void dictionary::create()
 			cout<<endl<<"Enter "<<i+1<<" th word:";
 			cin>>inp_word;
 			cout<<endl<<"Enter "<<inp_word<<"'s meaning:";
-			cin>>inp_meaning;
+			cin.ignore(INT_MAX,'\n');
+			getline(cin,inp_meaning);
+//			cout<<inp_meaning<<endl;
 			insert(inp_word,inp_meaning);
 		}
 		
@@ -207,7 +210,7 @@ void dictionary::create()
    int dictionary:: nofcomp(string key)
    {
    		Node *temp=root;
-   		int count;
+   		int count=0;
    		if(temp==NULL)
    		{
    			return -1;
@@ -293,6 +296,7 @@ int main()
 			cout<<endl<<"Enter a word to be deleted:";
 			cin>>deleteword;
 			d.performDelete(deleteword);
+			cout<<endl<<"Deleted word is:"<<deleteword;
 			cout<<endl<<"Inorder traversal after deletion:"<<endl;
 			d.doinorder();
 			break;
