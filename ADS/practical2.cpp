@@ -79,10 +79,12 @@ void dictionary::updateKeyword(Node *root,string replacemeaning)
 	}
 	else if(replacemeaning>root->word)
 	{
+		root=root->right;
 		updateKeyword(root,replacemeaning);
 	}
 	else if(replacemeaning<root->word)
 	{
+		root=root->left;
 		updateKeyword(root,replacemeaning);
 	}
 }
