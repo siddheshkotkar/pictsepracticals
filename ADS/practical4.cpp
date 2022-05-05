@@ -21,14 +21,25 @@ class get_details
 		
 		int search(details a[MAX],long long int fkey)
 		{
-			for(int i=0;i<MAX;i++)
+			int count=0;
+			int index=(fkey)%MAX;
+			int i=index;
+			do
 			{
 				if(a[i].phNo==fkey)
 				{
-					return i;
+					return count;
 				}
-			}
-			return 0;
+				count++;
+				i++;
+				if(i==MAX)
+				{
+					i=0;
+				}
+			}while(i!=index);
+			
+			return -1;
+			
 		}
 		
 		int find_duplicate(details a[MAX],long long int fkey)
@@ -83,8 +94,8 @@ class get_details
 			cout<<"\n Enter element to search:";
 			cin>>temp;
 			int ans=search(d,temp);
-			if(ans!=0)
-				cout<<"\n Phone number found at location "<<ans;
+			if(ans>=0)
+				cout<<"\n Phone number found at location "<<ans+1;
 			else
 				cout<<"\n Element not found";
 
@@ -149,8 +160,8 @@ class get_details
 		cout<<"\n Enter element to search:";
 		cin>>temp;
 		int ans=search(d,temp);
-		if(ans!=0)
-			cout<<"\n Phone number found at location "<<ans;
+		if(ans>=0)
+			cout<<"\n Phone number found at location "<<ans+1;
 		else
 			cout<<"\n Element not found";
 	}

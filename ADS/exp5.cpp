@@ -35,7 +35,7 @@ class Node {
             }
             Node* tobeDel = temp->next;
             temp->next = temp->next->next;
-            delete temp->next;
+            delete tobeDel;
             return this;
         }
     }
@@ -100,11 +100,13 @@ class HashTable {
     int size;
 
     int calculateHash(string word) {
-        int hash = 0;
-        for (int i = 0; i < word.length(); i++) {
-            hash += (word[i] * (i + 1));
-        }
-        return hash % size;
+//        int hash = 0;
+//        for (int i = 0; i < word.length(); i++) {
+//            hash += (word[i] * (i + 1));
+//        }
+//        return hash % size;
+			int length=word.length();
+			return length%size;
     }
 
    public:
@@ -131,7 +133,7 @@ class HashTable {
             } else {
                 cout << "0" << endl;
             }
-        }
+        }	
     }
 
     ~HashTable() { delete[] records; }
@@ -156,7 +158,7 @@ class HashTable {
 int main() {
     string word, meaning;
     HashTable directory(10);
-    int choice = 1;
+    int choice = 1;	
     while (choice) {
         cout << "Enter 1 to insert" << endl;
         cout << "Enter 2 to search" << endl;
