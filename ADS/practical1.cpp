@@ -1,5 +1,4 @@
-#include "iostream"
-#include<windows.h>
+#include <iostream>
 #define MAX 50
 using namespace std;
 
@@ -336,7 +335,7 @@ class BinaryTree {
 		deletetree(node->left);
 		deletetree(node->right);
 		cout<<"Deleted node is: "<<node->data<<endl;
-		Sleep(1200);
+		// Sleep(1200);
 		
 		delete node;
 	}
