@@ -1,120 +1,194 @@
-//============================================================================
-// Name        : practical5.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+#include <iostream>
+#include <string>
 
-#include <bits/stdc++.h>
-#define MAX 10
 using namespace std;
-class node
-{
-public:
-	string key,value;
-	node *next;
 
-	node()
-	{
-		key="",value="";
-		next=NULL;
-	}
+class Node {
+    string word;
+    string meaning;
+    Node* next;
+
+   public:
+    Node(string word, string meaning) {
+        this->word = word;
+        this->meaning = meaning;
+        this->next = NULL;
+    }
+    void insert(string word, string meaning) {
+        Node* temp = this;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = new Node(word, meaning);
+    }
+
+    Node* del(string word) {
+        Node* temp;
+        if (this->word == word) {
+            temp = this->next;
+            delete this;
+            return temp;
+        } else {
+            temp = this;
+            while (temp->next != NULL && temp->next->word != word) {
+                temp = temp->next;
+            }
+            Node* tobeDel = temp->next;
+            temp->next = temp->next->next;
+            delete tobeDel;
+            return this;
+        }
+    }
+
+    string search(string word) {
+        Node* temp = this;
+        while (temp && temp->word != word) {
+            temp = temp->next;
+        }
+        if (temp) {
+            return temp->meaning;
+        } else {
+            return "";
+        }
+    }
+
+    void display() {
+        Node* temp = this;
+        while (temp) {
+            cout << temp->word << " : " << temp->meaning << " -> ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
 };
-class dictionary:public node
-{
-public:
-	string word,meaning;
-	node *n = new node[MAX];
 
-	void init()
-	{
-		for(int i=0;i<MAX;i++)
-		{
-			n[i] = new node;
-		}
-	}
-	void accept()
-	{
-		int index,len;
-		char ch;
-		do{
-		cout<<"\n Enter Word:";
-		cin>>word;
-		cout<<"\n Enter its meaning:";
-		cin>>meaning;
-		len=word.length();
-//		cout<<len<<"\n";
-		index=(len%MAX);
-//		cout<<index;
-		if(n[index].key=="")
-		{
-			n[index].key=word;
-			n[index].value=meaning;
+class linkedList {
+    Node* root;
 
-		}
-		else if(n[index].key!="")
-		{
-			node *head = &n[index];
-			node *newnode=new node();
-			while(head->next!=NULL)
-			{
-				head = head->next;
-			}
+   public:
+    linkedList() { root = NULL; }
+    void insert(string word, string meaning) {
+        if (root) {
+            root->insert(word, meaning);
+        } else {
+            root = new Node(word, meaning);
+        }
+    }
 
-			newnode->key=word;
-			newnode->value=meaning;
-			head->next=newnode;
-		}
-		cout<<"\n Do you want to enter more(y/n):";
-		cin>>ch;
-		}while(ch!='n');
-	}
-	int find(string fkey)
-	{
-		int ind,flen;
-		flen=fkey.length();
-		ind=(flen%MAX);
-		while(n[ind].key!=""){
-			if(n[ind].key==fkey)
-			{
-				return ind;
-			}
+    void del(string word) {
+        if (root) {
+            root = root->del(word);
+        }
+    }
 
-		}
-		return 0;
-	}
-	void display()
-	{
-		for(int i=0;i<MAX;i++)
-		{
+    string search(string word) {
+        if (root) {
+            return root->search(word);
+        }
+        return "";
+    }
 
-			if(n[i].next!=NULL)
-			{
-				cout<<"\n"<<n[i].key;
-				cout<<"\t -> \t"<<n[i].next->key;
-				cout<<"\n"<<n[i].value;
-				cout<<"\t\t"<<n[i].next->value;
-
-			}
-			else
-			{
-				cout<<"\n no collision";
-			}
-		}
-	}
+    void display() {
+        if (root) {
+            root->display();
+        }
+    }
 };
-int main()
-{
-	dictionary d;
-	d.accept();
-	d.display();
-	string find;
-	cout<<"Enter string to find:";
-	cin>>find;
-	int x=d.find(find);
-	if(x!=0)
-	{
-		cout<<"\n String found at index "<<x;
-	}
+
+class HashTable {
+    linkedList** records;
+    int size;
+
+    int calculateHash(string word) {
+//        int hash = 0;
+//        for (int i = 0; i < word.length(); i++) {
+//            hash += (word[i] * (i + 1));
+//        }
+//        return hash % size;
+			int length=word.length();
+			return length%size;
+    }
+
+   public:
+    HashTable(int n) {
+        this->size = n;
+        this->records = new linkedList*[n];
+        for (int i = 0; i < this->size; i++) {
+            this->records[i] = NULL;
+        }
+    }
+
+    void insert(string word, string meaning) {
+        int index = calculateHash(word);
+        if (records[index] == NULL) {
+            records[index] = new linkedList();
+        }
+        records[index]->insert(word, meaning);
+    }
+
+    void display() {
+        for (int i = 0; i < size; i++) {
+            if (records[i]) {
+                records[i]->display();
+            } else {
+                cout << "0" << endl;
+            }
+        }	
+    }
+
+    ~HashTable() { delete[] records; }
+
+    string search(string word) {
+        int index = calculateHash(word);
+        if (records[index] == NULL) {
+            return "";
+        } else {
+            return records[index]->search(word);
+        }
+    }
+
+    void del(string word) {
+        int index = calculateHash(word);
+        if (records[index]) {
+            records[index]->del(word);
+        }
+    }
+};
+
+int main() {
+    string word, meaning;
+    HashTable directory(10);
+    int choice = 1;	
+    while (choice) {
+        cout << "Enter 1 to insert" << endl;
+        cout << "Enter 2 to search" << endl;
+        cout << "Enter 3 to display" << endl;
+        cout << "Enter 4 to delete" << endl;
+        cout << "Enter 0 to exit" << endl;
+        cin >> choice;
+        if (choice == 1) {
+            cout << "Enter the word that you want to insert : ";
+            cin >> word;
+            cout << "Enter the meaning of word : ";
+            cin >> meaning;
+            directory.insert(word, meaning);
+        } else if (choice == 2) {
+            cout << "Enter the word that you want to search for its meaning : ";
+            cin >> word;
+            string meaning = directory.search(word);
+            if (meaning == "") {
+                cout << "Meaning not found" << endl;
+            } else {
+                cout << meaning << " found" << endl;
+            }
+        } else if (choice == 3) {
+            cout << "HashTable is :" << endl;
+            directory.display();
+        } else if (choice == 4) {
+            cout << "Enter the word that you want to delete : " << endl;
+            cin >> word;
+            directory.del(word);
+        }
+    }
+    return 0;
 }

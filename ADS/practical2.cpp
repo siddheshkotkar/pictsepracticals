@@ -47,15 +47,7 @@ public:
 	}
 	void inorder_desc(Node *);
 	Node *deletekeyword(Node *,string);
-	Node *inorderSuccessor(Node *root)
-	{
-		Node *current=root;
-		while(current && current->left!=NULL)
-		{
-			current=current->left;
-		}
-		return current;
-	}
+	
 	void performDelete(string keyword)
 	{
 		deletekeyword(root,keyword);
@@ -88,6 +80,15 @@ void dictionary::updateKeyword(Node *root,string replacemeaning)
 		updateKeyword(root,replacemeaning);
 	}
 }
+Node *inorderSuccessor(Node *root)
+	{
+		Node *current=root;
+		while(current && current->left!=NULL)
+		{
+			current=current->left;
+		}
+		return current;
+	}
 
 Node *dictionary::deletekeyword(Node *root,string keyword)
 {
