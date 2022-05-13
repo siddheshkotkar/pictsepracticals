@@ -75,11 +75,12 @@ public:
 };
 void PhoneGraph::readgraph()
 {
- cout<<"Enter Adjacency(Cost) Matrix: \n";
+
  for(int i=0;i<n;i++)
  {
   for(int j=0;j<n; j++)
-   cin>>data[i][j];
+    {cout<<"\n Enter the cost between "<<i<<" to "<<j<<":";
+    cin>>data[i][j];}
  }
 }
 void PhoneGraph::printGraph()

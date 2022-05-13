@@ -1,35 +1,9 @@
-#define MAX 50
-#include <iostream>
-#include<vector>
+#include <bits/stdc++.h>
+
 using namespace std;
-class stack
-{
-	public:
-		int data[MAX];
-		int top=-1;
-	public:
-		bool empty()
-		{
-			if(top==-1)
-			{
-				return true;
-			}
-			return false;
-		}
-		void push(int x)
-		{
-			top++;
-			data[top]=x;
-		}
-		void pop()
-		{
-			int x=data[top];
-			top--;
-		}
-		
-};
+
 class Solution {
-  void findTopoSort(int node, vector < int > & vis, stack & st, vector < int > adj[]) {
+  void findTopoSort(int node, vector < int > & vis, stack < int > & st, vector < int > adj[]) {
     vis[node] = 1;
 
     for (auto it: adj[node]) {
@@ -41,7 +15,7 @@ class Solution {
   }
   public:
     vector < int > topoSort(int N, vector < int > adj[]) {
-      stack st;
+      stack < int > st;
       vector < int > vis(N, 0);
       for (int i = 0; i < N; i++) {
         if (vis[i] == 0) {
@@ -50,7 +24,7 @@ class Solution {
       }
       vector < int > topo;
       while (!st.empty()) {
-        topo.push_back(st.data[st.top]);
+        topo.push_back(st.top());
         st.pop();
       }
       return topo;
@@ -58,38 +32,33 @@ class Solution {
     }
 };
 
+// { Driver Code Starts.
 int main() {
-  int N ;
-cout<<"\n Enter number of nodes:";
-cin>>N;
-  char direc;
-    int v[N];
-    for(int i=0;i<N;i++)
-            {
-                cout<<"\n Enter node:";
-                cin>>v[i];
-            }
-  vector < int > adj[N];
-    for(int i=0;i<N;i++)
-    {
-        for(int j=0;j<N;j++)
-        {
-            cout<<"\n Is "<<v[i]<<" to "<<v[j]<<" a connection(y/n):";
-                    cin>>direc;
-                    if(direc=='y')
-                    {
-                        
-                        adj[i].push_back(j);
-                    }
-                    
-        }
-    }
+   cout<<"\n Enter number of nodes:"; 
 
+  int N ;
+    cin>>N;
+
+  vector < int > adj[N];
+  for(int i=0;i<N;i++)
+  {
+      for(int j=0;j<N;j++)
+      {
+          adj[i].push_back(j);
+      }
+  }
+
+//   adj[5].push_back(2);
+//   adj[5].push_back(0);
+//   adj[4].push_back(0);
+//   adj[4].push_back(1);
+//   adj[2].push_back(3);
+//   adj[3].push_back(1);
 
   Solution obj;
   vector < int > res = obj.topoSort(6, adj);
 
-  cout << "Topological sort of the given graph is:" << endl;
+  cout << "Toposort of the given graph is:" << endl;
   for (int i = 0; i < res.size(); i++) {
     cout << res[i] << " ";
   }
