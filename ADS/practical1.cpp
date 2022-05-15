@@ -169,7 +169,7 @@ class BinaryTree {
                 current = current->left;
             }
 
-            current = s.data[s.top];
+            current = s.txta[s.top];
             s.pop();
             cout<<"\n"<<current->data;
             current = current->right;
@@ -189,7 +189,7 @@ class BinaryTree {
                 current = current->left;
             }
             if(!s.empty()){
-                current = s.data[s.top];
+                current = s.txta[s.top];
                 s.pop();
             }
         }
@@ -200,7 +200,7 @@ class BinaryTree {
         Node *current = root;
         s1.push(current);
         while(!s1.empty()) {
-            current = s1.data[s1.top];
+            current = s1.txta[s1.top];
             s1.pop();
             s2.push(current);
             if(current->left) {
@@ -212,7 +212,7 @@ class BinaryTree {
         }
         while(!s2.empty())
         {
-        	current = s2.data[s2.top];
+        	current = s2.txta[s2.top];
         	s2.pop();
         	cout<<"\n"<<current->data;
 		}
@@ -308,7 +308,7 @@ class BinaryTree {
 		
 		while(!q.empty())
 		{
-			Node *currentNode=q.data[q.front];
+			Node *currentNode=q.txta[q.front];
 			q.pop();
 			bool isInternalNode=0;
 			if(currentNode->left!=NULL)

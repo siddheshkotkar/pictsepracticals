@@ -1,48 +1,115 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <math.h>
+
 using namespace std;
-class heap
+
+class MinHeap
 {
-    public:
-        void insert(int a[],int n,int value)
-        {  
-            a[n]=value;
-            
-            int i=n;
-            while(i>1)
-            {
-                int parent=i/2;
-                if(a[parent]<a[i])
-                {
-                    swap(a[parent],a[i]);
-                    i=parent;
-                }
-                else
-                {
-                    return;
-                }
-            }
+    int *harr;     
+    int capacity;  
+    int heap_size; 
+public:
+    MinHeap(int cap)
+    {
+        heap_size = cap;
+        capacity = cap;
+        harr = new int[cap];
+    }
+
+    void printArray()
+    {
+        for (int i = 0; i < heap_size; i++)
+            cout << harr[i] << " ";
+        cout << endl;
+    }
+
+    int parent(int i)
+    {
+        return (i - 1) / 2;
+    }
+
+    int left(int i)
+    {
+        return (2 * i + 1);
+    }
+
+    int right(int i)
+    {
+        return (2 * i + 2);
+    }
+    int getMin()
+    {
+        return harr[0];
+    }
+    void MinHeapify(int i)
+    {
+        int l = left(i);
+        int r = right(i);
+        int smallest = i;
+        if (l < heap_size && harr[l] < harr[i])
+            smallest = l;
+        if (r < heap_size && harr[r] < harr[smallest])
+            smallest = r;
+        if (smallest != i)
+        {
+            swap(harr[i], harr[smallest]);
+            MinHeapify(smallest);
         }
+    }
+    
+    int extractMin()
+    {
+        if (heap_size <= 0)
+            return 999999;
+        if (heap_size == 1)
+        {
+            heap_size--;
+            return harr[0];
+        }
+
+        
+        int root = harr[0];
+        harr[0] = harr[heap_size - 1];
+        heap_size--;
+        MinHeapify(0);
+        return root;
+    }
+
+    void getUnsortedArray()
+    {
+        cout << "Enter " << capacity << " elements:" << endl;
+        for (int i = 0; i < capacity; i++)
+            cin >> harr[i];
+    }
+
+    void heapSort()
+    {
+        int temp[capacity];
+        for (int j = 0; j < capacity; j++)
+        {
+           
+            temp[j] = extractMin();
+            cout << temp[j] << " ";
+        }
+    }
 };
+
 int main()
 {
-    heap h;
-    int n;
-    cout<<"\n Enter N:";
-    cin>>n;
-    int heap_arr[n],x;
-    cout<<"\n Enter elements:";
-    for(int i=1;i<=n;i++)
+    int s;
+    cout << "Enter the number of elements:" << endl;
+    cin >> s; 
+    MinHeap obj(s);
+    obj.getUnsortedArray(); 
+
+    cout << "Unsorted Heap is :" << endl;
+    obj.printArray();
+
+    for (int i = s / 2 - 1; i >= 0; i--)
     {
-        cin>>x;
-        if(i==1)
-            {heap_arr[i]=x;
-            continue;}
-        h.insert(heap_arr,i,x);
-        
+        obj.MinHeapify(i);
     }
-    cout<<"\n array is:";
-    for(int i=1;i<=n;i++)
-    {
-        cout<<heap_arr[i]<<"\t";
-    }
+
+    cout << "Sorted Array :" << endl;
+    obj.heapSort();
 }

@@ -158,7 +158,7 @@ void PhoneGraph::kruskal(EdgeList &spanlist)
   {
    if(data[i][j]!=0)
    {
-    elist.data[elist.n]=Edge(i,j,data[i][j]); 
+    elist.txta[elist.n]=Edge(i,j,data[i][j]); 
     elist.n++;
    }
   }
@@ -168,11 +168,11 @@ void PhoneGraph::kruskal(EdgeList &spanlist)
 
  for(int i=0;i<elist.n;i++)
  {
-  cno1=find(belongs,elist.data[i].u); 
-  cno2=find(belongs,elist.data[i].v); 
+  cno1=find(belongs,elist.txta[i].u); 
+  cno2=find(belongs,elist.txta[i].v); 
   if(cno1!=cno2) 
   {
-   spanlist.data[spanlist.n]=elist.data[i]; 
+   spanlist.txta[spanlist.n]=elist.txta[i]; 
    spanlist.n=spanlist.n+1;
    unionComp(belongs,cno1,cno2);
   }
